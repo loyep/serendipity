@@ -21,10 +21,3 @@ Homestead.json
 
 # PHPStorm
 .idea
-
-# Resource
-/public/css
-/public/js
-/public/images
-/public/fonts
-/public/mix-manifest.json
