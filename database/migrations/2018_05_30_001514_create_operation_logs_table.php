@@ -20,7 +20,7 @@ class CreateOperationLogsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('path');
             $table->string('method', 10);
-            $table->string('ip', 15);
+            $table->string('ip', 100);
             $table->text('input');
             $table->timestamps();
 

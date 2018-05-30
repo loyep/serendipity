@@ -20,7 +20,7 @@ class CreateUserMetasTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('name')->nullable();
             $table->string('key')->comment('关键字');
-            $table->text('value')->nullable()->default('')->comment('值');
+            $table->text('value')->nullable()->comment('值');
             $table->string('type')->default('text');
             $table->text('details')->nullable();
             $table->timestamps();

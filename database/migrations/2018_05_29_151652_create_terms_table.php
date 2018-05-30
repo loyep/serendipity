@@ -24,7 +24,7 @@ class CreateTermsTable extends Migration
             $table->integer('count')->default(0)->comment('文章数');
             $table->integer('parent')->default(0);
             $table->integer('order')->default(0);
-            $table->string('type')->default('')->comment('类型');
+            $table->string('type')->default('tag')->comment('类型');
             $table->timestamps();
         });
     }
