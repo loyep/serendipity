@@ -15,7 +15,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/admin/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="/assets/admin/css/bootstrap-extend.min.css">
     <link rel="stylesheet" href="/assets/admin/assets/css/site.min.css">
 
     <!-- Plugins -->
@@ -1466,9 +1466,9 @@
 
 <!-- Footer -->
 <footer class="site-footer">
-    <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a></div>
+    <div class="site-footer-legal">© 2018 <a href="https://maxsey.com">{{ config('app.name', 'Serendipity') }}</a></div>
     <div class="site-footer-right">
-        Crafted with <i class="red-600 icon md-favorite"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
+        Crafted with by <a href="{{ config('app.url') }}">{{ config('app.name', 'Serendipity') }}</a>
     </div>
 </footer>
 <!-- Core  -->
