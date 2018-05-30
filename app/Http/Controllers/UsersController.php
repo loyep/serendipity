@@ -2,40 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostCreateRequest;
-use App\Http\Requests\PostUpdateRequest;
-use App\Repositories\PostRepository;
-use App\Validators\PostValidator;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\UserRepository;
+use App\Validators\UserValidator;
 
 /**
- * Class PostsController.
+ * Class UsersController.
  *
  * @package namespace App\Http\Controllers;
  */
-class PostsController extends Controller
+class UsersController extends Controller
 {
     /**
-     * @var PostRepository
+     * @var UserRepository
      */
     protected $repository;
 
     /**
-     * @var PostValidator
+     * @var UserValidator
      */
     protected $validator;
 
     /**
-     * PostsController constructor.
+     * UsersController constructor.
      *
-     * @param PostRepository $repository
-     * @param PostValidator $validator
+     * @param UserRepository $repository
+     * @param UserValidator $validator
      */
-    public function __construct(PostRepository $repository, PostValidator $validator)
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
+        $this->validator  = $validator;
     }
 
     /**
@@ -46,50 +49,50 @@ class PostsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $posts = $this->repository->all();
+        $users = $this->repository->all();
 
-        if ( request()->wantsJson() ) {
+        if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $posts,
+                'data' => $users,
             ]);
         }
 
-        return view('posts.index', compact('posts'));
+        return view('users.index', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PostCreateRequest $request
+     * @param  UserCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(PostCreateRequest $request)
+    public function store(UserCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $post = $this->repository->create($request->all());
+            $user = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Post created.',
-                'data' => $post->toArray(),
+                'message' => 'User created.',
+                'data'    => $user->toArray(),
             ];
 
-            if ( $request->wantsJson() ) {
+            if ($request->wantsJson()) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch ( ValidatorException $e ) {
-            if ( $request->wantsJson() ) {
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
                 return response()->json([
-                    'error' => true,
+                    'error'   => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -107,16 +110,16 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
-        if ( request()->wantsJson() ) {
+        if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $post,
+                'data' => $user,
             ]);
         }
 
-        return view('posts.show', compact('post'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -128,46 +131,46 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
-        return view('posts.edit', compact('post'));
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  PostUpdateRequest $request
-     * @param  string $id
+     * @param  UserUpdateRequest $request
+     * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(PostUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $post = $this->repository->update($request->all(), $id);
+            $user = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Post updated.',
-                'data' => $post->toArray(),
+                'message' => 'User updated.',
+                'data'    => $user->toArray(),
             ];
 
-            if ( $request->wantsJson() ) {
+            if ($request->wantsJson()) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch ( ValidatorException $e ) {
+        } catch (ValidatorException $e) {
 
-            if ( $request->wantsJson() ) {
+            if ($request->wantsJson()) {
 
                 return response()->json([
-                    'error' => true,
+                    'error'   => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -188,14 +191,14 @@ class PostsController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if ( request()->wantsJson() ) {
+        if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Post deleted.',
+                'message' => 'User deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Post deleted.');
+        return redirect()->back()->with('message', 'User deleted.');
     }
 }

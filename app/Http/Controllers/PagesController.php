@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\PageCreateRequest;
 use App\Http\Requests\PageUpdateRequest;
 use App\Repositories\PageRepository;
 use App\Validators\PageValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class PagesController.
@@ -38,7 +35,7 @@ class PagesController extends Controller
     public function __construct(PageRepository $repository, PageValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -51,7 +48,7 @@ class PagesController extends Controller
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $pages = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'data' => $pages,
@@ -80,19 +77,19 @@ class PagesController extends Controller
 
             $response = [
                 'message' => 'Page created.',
-                'data'    => $page->toArray(),
+                'data' => $page->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -112,7 +109,7 @@ class PagesController extends Controller
     {
         $page = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'data' => $page,
@@ -140,7 +137,7 @@ class PagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  PageUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      *
@@ -156,21 +153,21 @@ class PagesController extends Controller
 
             $response = [
                 'message' => 'Page updated.',
-                'data'    => $page->toArray(),
+                'data' => $page->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,7 +188,7 @@ class PagesController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'message' => 'Page deleted.',

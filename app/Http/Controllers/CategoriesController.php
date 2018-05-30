@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\CategoryRepository;
 use App\Validators\CategoryValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CategoriesController.
@@ -38,7 +35,7 @@ class CategoriesController extends Controller
     public function __construct(CategoryRepository $repository, CategoryValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -51,7 +48,7 @@ class CategoriesController extends Controller
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $categories = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'data' => $categories,
@@ -80,19 +77,19 @@ class CategoriesController extends Controller
 
             $response = [
                 'message' => 'Category created.',
-                'data'    => $category->toArray(),
+                'data' => $category->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -112,7 +109,7 @@ class CategoriesController extends Controller
     {
         $category = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'data' => $category,
@@ -140,7 +137,7 @@ class CategoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  CategoryUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      *
@@ -156,21 +153,21 @@ class CategoriesController extends Controller
 
             $response = [
                 'message' => 'Category updated.',
-                'data'    => $category->toArray(),
+                'data' => $category->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,7 +188,7 @@ class CategoriesController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
                 'message' => 'Category deleted.',
