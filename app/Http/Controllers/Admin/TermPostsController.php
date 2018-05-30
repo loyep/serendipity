@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\TermPostCreateRequest;
+use App\Http\Requests\TermPostUpdateRequest;
+use App\Repositories\TermPostRepository;
+use App\Validators\TermPostValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\CommentMetaCreateRequest;
-use App\Http\Requests\CommentMetaUpdateRequest;
-use App\Repositories\CommentMetaRepository;
-use App\Validators\CommentMetaValidator;
 
 /**
- * Class CommentMetasController.
+ * Class TermPostsController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class CommentMetasController extends Controller
+class TermPostsController extends Controller
 {
     /**
-     * @var CommentMetaRepository
+     * @var TermPostRepository
      */
     protected $repository;
 
     /**
-     * @var CommentMetaValidator
+     * @var TermPostValidator
      */
     protected $validator;
 
     /**
-     * CommentMetasController constructor.
+     * TermPostsController constructor.
      *
-     * @param CommentMetaRepository $repository
-     * @param CommentMetaValidator $validator
+     * @param TermPostRepository $repository
+     * @param TermPostValidator $validator
      */
-    public function __construct(CommentMetaRepository $repository, CommentMetaValidator $validator)
+    public function __construct(TermPostRepository $repository, TermPostValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class CommentMetasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $commentMetas = $this->repository->all();
+        $termPosts = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $commentMetas,
+                'data' => $termPosts,
             ]);
         }
 
-        return view('commentMetas.index', compact('commentMetas'));
+        return view('termPosts.index', compact('termPosts'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CommentMetaCreateRequest $request
+     * @param  TermPostCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CommentMetaCreateRequest $request)
+    public function store(TermPostCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $commentMetum = $this->repository->create($request->all());
+            $termPost = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'CommentMeta created.',
-                'data'    => $commentMetum->toArray(),
+                'message' => 'TermPost created.',
+                'data' => $termPost->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class CommentMetasController extends Controller
      */
     public function show($id)
     {
-        $commentMetum = $this->repository->find($id);
+        $termPost = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $commentMetum,
+                'data' => $termPost,
             ]);
         }
 
-        return view('commentMetas.show', compact('commentMetum'));
+        return view('termPosts.show', compact('termPost'));
     }
 
     /**
@@ -131,46 +128,46 @@ class CommentMetasController extends Controller
      */
     public function edit($id)
     {
-        $commentMetum = $this->repository->find($id);
+        $termPost = $this->repository->find($id);
 
-        return view('commentMetas.edit', compact('commentMetum'));
+        return view('termPosts.edit', compact('termPost'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  CommentMetaUpdateRequest $request
-     * @param  string            $id
+     * @param  TermPostUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CommentMetaUpdateRequest $request, $id)
+    public function update(TermPostUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $commentMetum = $this->repository->update($request->all(), $id);
+            $termPost = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'CommentMeta updated.',
-                'data'    => $commentMetum->toArray(),
+                'message' => 'TermPost updated.',
+                'data' => $termPost->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class CommentMetasController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'CommentMeta deleted.',
+                'message' => 'TermPost deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'CommentMeta deleted.');
+        return redirect()->back()->with('message', 'TermPost deleted.');
     }
 }
