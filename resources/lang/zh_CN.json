@@ -7,5 +7,9 @@
   "Register": "注册",
   "Dashboard": "仪表盘",
   "Logout": "退出",
-  "Home": "主页"
+  "Home": "主页",
+  "Confirm Password": "确认密码",
+  "Name": "用户名",
+  "Reset Password": "重置密码",
+  "Send Password Reset Link": "发送密码重置链接"
 }
