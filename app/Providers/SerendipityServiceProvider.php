@@ -18,6 +18,8 @@ class SerendipityServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $this->app['view']->addNamespace('admin', base_path('/resources/admin/views'));
+        $this->app['view']->addNamespace('app', base_path('/resources/views'));
     }
 
     /**
