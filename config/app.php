@@ -193,6 +193,7 @@ return [
          * Application Extension Service Providers...
          */
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\SerendipityServiceProvider::class,
 
 
     ],
