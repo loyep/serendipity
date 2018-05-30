@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Entities\User;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
+use App\Validators\UserValidator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,12 +35,25 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var UserRepository
      */
-    public function __construct()
+    protected $repository;
+
+    /**
+     * @var UserValidator
+     */
+    protected $validator;
+
+    /**
+     * RegisterController constructor.
+     *
+     * @param UserRepository $repository
+     * @param UserValidator $validator
+     */
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
+        $this->repository = $repository;
+        $this->validator = $validator;
         $this->middleware('guest');
     }
 
@@ -66,10 +80,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = $this->repository->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return $user;
     }
 }

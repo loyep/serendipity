@@ -15,8 +15,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::middleware(['web', 'auth'])->prefix('admin')->namespace('Admin')->group(function () {
+$prefix = config('admin.route.prefix', 'admin');
+
+$namespace = 'Admin';
+
+Route::group(['middleware' => ['web', 'auth'], 'prefix' => $prefix, 'namespace' => $namespace,], function () {
 
     Route::get('/', 'AdminController@index')->name('admin');
-
 });

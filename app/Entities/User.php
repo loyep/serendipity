@@ -4,7 +4,6 @@ namespace App\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -27,6 +26,14 @@ class User extends Authenticatable implements Transformable
         'name', 'display_name', 'email', 'url', 'status', 'url', 'password', 'allow_login',
     ];
 
+    protected $email;
+
+    protected $name;
+
+    protected $url;
+
+    protected $display_name;
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -39,22 +46,6 @@ class User extends Authenticatable implements Transformable
     function getAvatarAttribute()
     {
         return gravatar($this->email);
-    }
-
-    /**
-     * 设置用户的密码
-     *
-     * @param  string $value
-     * @return string
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
-    public function setPasswordConfirmationAttribute($value)
-    {
-        $this->attributes['password_confirmation'] = Hash::make($value);
     }
 
     /**
