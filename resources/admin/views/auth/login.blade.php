@@ -32,7 +32,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="/assets/admin/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="/assets/admin/fonts/brand-icons/brand-icons.min.css">
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    {{--<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>--}}
 
     <!--[if lt IE 9]>
     <script src="/assets/admin/vendor/html5shiv/html5shiv.min.js"></script>
@@ -51,7 +51,7 @@
         </script>
     @endif
 </head>
-<body class="animsition page-login-v3 layout-full" style="background-image: url(/assets/admin/assets/images/register.jpeg);">
+<body class="animsition page-login-v3 layout-full">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -67,6 +67,12 @@
                     <img class="brand-img" src="/assets/admin/assets//images/logo-colored.png" alt="...">
                     <h2 class="brand-text font-size-18">Remark</h2>
                 </div>
+
+                {{--<hr class="w-30px">--}}
+
+                {{--<div class="divider">Or Sign In With</div>--}}
+
+
                 <form method="post" action="#" autocomplete="off">
                     <div class="form-group form-material floating" data-plugin="formMaterial">
                         <input type="email" class="form-control" name="email"/>
