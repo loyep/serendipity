@@ -1,4 +1,5 @@
-.dashboard .card {
+.dashboard .card, .dashboard .panel {
+  margin-bottom: 30px;
   height: calc(100% - 30px); }
 
 .dashboard .card-block {

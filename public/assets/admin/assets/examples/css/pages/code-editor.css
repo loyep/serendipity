@@ -1,10 +1,11 @@
-.page-code-editor .mm-page {
+.page-code-editor .page {
   height: calc(100% - 44px); }
-  .page-code-editor .mm-page .page {
+  .page-code-editor .page-main, .page-code-editor .page-content {
+    padding: 0;
     height: 100%; }
-    .page-code-editor .mm-page .page-main, .page-code-editor .mm-page .page-content {
-      padding: 0;
-      height: 100%; }
+
+.page-code-editor .page-aside-inner {
+  height: 100%; }
 
 .page-code-editor .treeview .list-group-item.node-filesTree {
   padding-top: 8px;

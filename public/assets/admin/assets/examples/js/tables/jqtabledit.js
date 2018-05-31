@@ -23,6 +23,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#exampleTableditToolbars').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       columns: {
         identifier: [0, 'id'],
         editable: [[1, 'username'], [2, 'first'], [3, 'last']]
@@ -46,6 +47,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#exampleTableditInlineEdit').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       eventType: 'dblclick',
       editButton: false,
       columns: {
@@ -71,6 +73,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#InlineEditWithoutIndentify').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       editButton: false,
       deleteButton: false,
       hideIdentifier: true,
@@ -97,6 +100,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#tableditWithEditButtonOnly').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       deleteButton: false,
       saveButton: false,
       autoFocus: false,
@@ -123,6 +127,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#tableditWithDeleteButtonOnly').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       rowIdentifier: 'data-id',
       editButton: false,
       restoreButton: false,
@@ -153,6 +158,7 @@
   // -------------------------------
   (function () {
     (0, _jquery2.default)('#tableditLogAllHooks').Tabledit({
+      groupClass: 'btn-group btn-group-flat btn-group-sm',
       rowIdentifier: 'data-id',
       editButton: true,
       restoreButton: true,

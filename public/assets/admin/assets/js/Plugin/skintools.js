@@ -31,7 +31,7 @@
       return path;
     };
 
-    var layout = 'mmenu';
+    var layout = 'base';
     // var levelPaht = layout;
     var settingsName = 'remark.material.' + layout + '.skinTools';
     var settings = localStorage.getItem(settingsName);
@@ -41,19 +41,19 @@
         settings = JSON.parse(settings);
       }
 
-      if (settings.primary && settings.primary !== 'primary') {
+      if (settings['primary'] && settings['primary'] !== 'primary') {
         var head = document.head;
         var link = document.createElement('link');
 
         link.type = 'text/css';
         link.rel = 'stylesheet';
-        link.href = getLevel(window.location.pathname, layout) + 'assets/skins/' + settings.primary + '.css';
+        link.href = getLevel(window.location.pathname, layout) + 'assets/skins/' + settings['primary'] + '.css';
         link.id = "skinStyle";
 
         head.appendChild(link);
       }
 
-      if (settings.sidebar && settings.sidebar === 'dark') {
+      if (settings['sidebar'] && settings['sidebar'] === 'dark') {
         var menubarFn = setInterval(function () {
           var menubar = document.getElementsByClassName('site-menubar');
           if (menubar.length > 0) {
@@ -67,10 +67,10 @@
         var navbar = document.getElementsByClassName('site-navbar');
         if (navbar.length > 0) {
           clearInterval(navbarFn);
-          if (settings.navbar && settings.navbar !== 'primary') {
-            navbar[0].className += ' bg-' + settings.navbar + '-600';
+          if (settings['navbar'] && settings['navbar'] !== 'primary') {
+            navbar[0].className += ' bg-' + settings['navbar'] + '-600';
           }
-          if (settings.navbarInverse && settings.navbarInverse !== 'false') {
+          if (settings['navbarInverse'] && settings['navbarInverse'] !== 'false') {
             navbar[0].className += " navbar-inverse";
           }
         }
@@ -92,7 +92,7 @@
               return null;
             }
 
-            if ((typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === "object") {
+            if (Object(value) === value) {
               value = JSON.stringify(value);
             }
             localStorage.setItem(key, value);
@@ -117,7 +117,7 @@
         };
 
         var Skintools = {
-          tpl: '<div class="site-skintools">' + '<div class="site-skintools-inner">' + '<div class="site-skintools-toggle">' + '<i class="icon md-settings primary-600"></i>' + '</div>' + '<div class="site-skintools-content">' + '<div class="nav-tabs-horizontal">' + '<ul role="tablist" class="nav nav-tabs nav-tabs-line">' + '<li class="nav-item"><a class="nav-link active" role="tab" aria-controls="skintoolsSidebar" href="#skintoolsSidebar" data-toggle="tab" aria-expanded="true">Sidebar</a></li>' + '<li class="nav-item"><a class="nav-link" role="tab" aria-controls="skintoolsNavbar" href="#skintoolsNavbar" data-toggle="tab" aria-expanded="false">Navbar</a></li>' + '<li class="nav-item"><a class="nav-link" role="tab" aria-controls="skintoolsPrimary" href="#skintoolsPrimary" data-toggle="tab" aria-expanded="false">Primary</a></li>' + '</ul>' + '<div class="tab-content">' + '<div role="tabpanel" id="skintoolsSidebar" class="tab-pane active"></div>' + '<div role="tabpanel" id="skintoolsNavbar" class="tab-pane"></div>' + '<div role="tabpanel" id="skintoolsPrimary" class="tab-pane"></div>' + '<button class="btn btn-block btn-primary mt-20" id="skintoolsReset" type="button">Reset</button>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
+          tpl: '<div class="site-skintools">' + '<div class="site-skintools-inner">' + '<div class="site-skintools-toggle">' + '<i class="icon md-settings primary-600"></i>' + '</div>' + '<div class="site-skintools-content">' + '<div class="nav-tabs-horizontal">' + '<ul role="tablist" class="nav nav-tabs nav-tabs-line">' + '<li role="presentation" class="nav-item"><a class="nav-link active" role="tab" aria-controls="skintoolsSidebar" href="#skintoolsSidebar" data-toggle="tab" aria-expanded="true">Sidebar</a></li>' + '<li class="nav-item" role="presentation"><a class="nav-link" role="tab" aria-controls="skintoolsNavbar" href="#skintoolsNavbar" data-toggle="tab" aria-expanded="false">Navbar</a></li>' + '<li class="nav-item" role="presentation"><a class="nav-link" role="tab" aria-controls="skintoolsPrimary" href="#skintoolsPrimary" data-toggle="tab" aria-expanded="false">Primary</a></li>' + '</ul>' + '<div class="tab-content">' + '<div role="tabpanel" id="skintoolsSidebar" class="tab-pane active"></div>' + '<div role="tabpanel" id="skintoolsNavbar" class="tab-pane"></div>' + '<div role="tabpanel" id="skintoolsPrimary" class="tab-pane"></div>' + '<button class="btn btn-block btn-primary mt-20" id="skintoolsReset" type="button">Reset</button>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
           skintoolsSidebar: ['dark', 'light'],
           skintoolsNavbar: ['primary', 'blue', 'brown', 'cyan', 'green', 'grey', 'orange', 'pink', 'purple', 'red', 'teal', 'yellow'],
           navbarSkins: 'bg-primary-600 bg-blue-600 bg-brown-600 bg-cyan-600 bg-green-600 bg-grey-600 bg-orange-600 bg-pink-600 bg-purple-600 bg-red-600 bg-teal-600 bg-yellow-700',

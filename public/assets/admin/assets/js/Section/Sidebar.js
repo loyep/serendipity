@@ -49,7 +49,7 @@
             skin: 'site-sidebar',
             dragTolerance: 80,
             template: function template(options) {
-              return '<div class="' + options.classes.base + ' ' + options.classes.base + '-' + options.direction + '">\n          <div class="' + options.classes.content + ' site-sidebar-content"></div>\n          <div class="slidePanel-handler"></div>\n          </div>';
+              return '<div class="' + options.classes.base + ' ' + options.classes.base + '-' + options.direction + '">\n\t    <div class="' + options.classes.content + ' site-sidebar-content"></div>\n\t    <div class="slidePanel-handler"></div>\n\t    </div>';
             },
             afterLoad: function afterLoad() {
               var self = this;

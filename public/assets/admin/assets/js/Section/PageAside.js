@@ -22,7 +22,6 @@
   var _Component3 = babelHelpers.interopRequireDefault(_Component2);
 
   var $BODY = (0, _jquery2.default)('body');
-  // const $HTML = $('html');
 
   var PageAside = function (_Component) {
     babelHelpers.inherits(PageAside, _Component);
@@ -57,6 +56,7 @@
             _this2.scrollable.update();
           });
         }
+
         Breakpoints.on('change', function () {
           var current = Breakpoints.current().name;
 

@@ -18,7 +18,8 @@
   (0, _jquery2.default)(document).ready(function ($$$1) {
     (0, _Site.run)();
 
-    // widget-linearea
+    // Widget Linearea
+    // ---------------
     (function () {
       var linearea = new Chartist.Line('#widgetLinearea .ct-chart', {
         labels: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
@@ -54,7 +55,8 @@
       });
     })();
 
-    // widget gmap
+    // Widget Gmap
+    // -----------
     (function () {
       var map = new GMaps({
         el: '#gmap',

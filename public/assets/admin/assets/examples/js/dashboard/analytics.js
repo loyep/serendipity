@@ -20,7 +20,7 @@
   });
 
   // Top Line Chart With Tooltips
-  // ------------------------------
+  // ----------------------------
   (function () {
 
     // common options for common style
@@ -108,7 +108,6 @@
     //finally new a chart according to the state
     var createKindChart = function createKindChart(clickli) {
       var clickli = clickli || (0, _jquery2.default)("#productOverviewWidget .product-filters").find(".active");
-      console.log(clickli);
 
       var chartId = clickli.attr("href");
       switch (chartId) {
@@ -153,7 +152,7 @@
     //define an array contains four bar's data
     var barsData = [overlappingBarsDataOne, overlappingBarsDataTwo, overlappingBarsDataThree, overlappingBarsDataThree];
 
-    //Common OverlappingBarsOptions 
+    //Common OverlappingBarsOptions
     var overlappingBarsOptions = {
       low: 0,
       high: 10,
@@ -197,7 +196,7 @@
   })();
 
   //// Stacked Week Bar Chart
-  // ------------------------------
+  // ------------------------
   (function () {
     new Chartist.Bar('#weekStackedBarChart', {
       labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -220,7 +219,7 @@
   })();
 
   // Example Morris Donut
-  // ---------------------
+  // --------------------
   (function () {
 
     Morris.Donut({

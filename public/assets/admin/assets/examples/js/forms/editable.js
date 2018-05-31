@@ -17,6 +17,7 @@
 
   (0, _jquery2.default)(document).ready(function ($$$1) {
     (0, _Site.run)();
+
     //enable / disable
     $$$1('#editableEnable').click(function () {
       $$$1('#editableUser .editable').editable('toggleDisabled');

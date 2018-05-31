@@ -2,6 +2,12 @@
   max-width: 660px;
   margin: 0 auto; }
 
+.page-email .page-content div.card-img-top {
+  margin-bottom: 35px; }
+
+.page-email .page-content div.card-link {
+  margin-top: 10px; }
+
 .page-email .email-title {
   padding: 15px 0 5px;
   text-align: center; }

@@ -72,10 +72,12 @@
           }
           $item.removeClass('hover');
         }).on('deactive.site.menu', '.site-menu-item.active', function (e) {
+
           $(this).removeClass('active');
 
           e.stopPropagation();
         }).on('active.site.menu', '.site-menu-item', function (e) {
+
           $(this).addClass('active');
 
           e.stopPropagation();

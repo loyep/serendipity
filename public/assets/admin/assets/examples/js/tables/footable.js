@@ -166,11 +166,13 @@
   // Editing Row
   // ----------------
   (function () {
+    var _editing;
+
     var $modal = (0, _jquery2.default)('#editor-modal'),
         $editor = (0, _jquery2.default)('#editor'),
         $editorTitle = (0, _jquery2.default)('#editor-title'),
         ft = FooTable.init('#exampleFooEditing', {
-      editing: {
+      editing: (_editing = {
         enabled: true,
         addRow: function addRow() {
           $modal.removeData('row');
@@ -205,7 +207,13 @@
         $buttonAdd: function $buttonAdd() {
           return '<button type="button" class="btn btn-primary mr-15 footable-add">' + this.addText + "</button> ";
         }
-      }
+      }, babelHelpers.defineProperty(_editing, '$buttonShow', function $buttonShow() {
+        return '<button type="button" class="btn btn-primary mr-10 footable-show">' + this.showText + "</button>";
+      }), babelHelpers.defineProperty(_editing, '$buttonHide', function $buttonHide() {
+        return '<button type="button" class="btn btn-default footable-hide">' + this.hideText + "</button>";
+      }), babelHelpers.defineProperty(_editing, '$buttonAdd', function $buttonAdd() {
+        return '<button type="button" class="btn btn-primary mr-15 footable-add">' + this.addText + "</button> ";
+      }), _editing)
     }),
         uid = 10;
 
