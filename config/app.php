@@ -160,6 +160,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Application Extension Service Providers...
+         */
+        App\Providers\RepositoryServiceProvider::class,
+        App\Providers\SerendipityServiceProvider::class,
+
     ],
 
     /*
