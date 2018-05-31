@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Prettus\Repository\Contracts\Transformable;
@@ -43,9 +44,9 @@ class User extends Authenticatable implements Transformable
     /**
      * The metas of this user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function metas()
+    public function metas(): HasMany
     {
         return $this->hasMany(UserMeta::class, 'user_id');
     }
@@ -53,9 +54,9 @@ class User extends Authenticatable implements Transformable
     /**
      * The posts belongs this user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'user_id');
     }

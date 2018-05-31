@@ -20,6 +20,6 @@ class Option extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['id', 'group', 'name', 'key', 'value', 'type', 'details', 'order',];
 
 }

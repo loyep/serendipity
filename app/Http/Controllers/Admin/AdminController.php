@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\Menu;
+
 class AdminController extends Controller
 {
     /**
@@ -21,6 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+//        dd(Menu::menus());
         return view('admin::index');
     }
 }

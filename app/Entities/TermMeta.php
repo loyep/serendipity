@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -20,6 +21,13 @@ class TermMeta extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['id', 'term_id', 'name', 'key', 'value', 'type', 'details',];
 
+    /**
+     * @return BelongsTo
+     */
+    public function term(): BelongsTo
+    {
+        return $this->belongsTo(Tag::class, 'term_id');
+    }
 }

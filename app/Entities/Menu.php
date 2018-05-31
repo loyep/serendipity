@@ -3,6 +3,8 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -20,6 +22,40 @@ class Menu extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['id', 'parent_id', 'order', 'title', 'icon', 'target', 'route', 'url', 'parameters', 'group'];
+
+    public static function menus()
+    {
+        $menus = Menu::has('parent', '=', 0)->withCount('children')->with('children')->get();
+        return $menus;
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Menu::class, 'parent_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(Menu::class, 'parent_id');
+    }
+
+    public function getPermalinkAttribute()
+    {
+        if ( !empty($this->route) && $route = route($this->route)) {
+            return $route;
+        }
+
+        if (!empty($this->url)) {
+            return $this->url;
+        }
+        return 'javascript:void(0)';
+    }
 
 }
