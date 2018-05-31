@@ -53,7 +53,7 @@ class Menu extends Model implements Transformable
         }
 
         if (!empty($this->url)) {
-            return $this->url;
+            return url($this->url);
         }
         return 'javascript:void(0)';
     }

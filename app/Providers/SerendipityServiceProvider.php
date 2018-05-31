@@ -16,6 +16,8 @@ class SerendipityServiceProvider extends ServiceProvider
         //
         $this->app['view']->addNamespace('admin', base_path('/resources/admin/views'));
         $this->app['view']->addNamespace('app', base_path('/resources/views'));
+
+        $this->app->singleton('serendipity', \App\Serendipity\Serendipity::class);
     }
 
     /**

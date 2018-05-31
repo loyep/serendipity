@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Entities\Menu;
+use App\Facades\Serendipity;
 
 class AdminController extends Controller
 {
@@ -23,7 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-//        dd(Menu::menus());
+        $options = Serendipity::js('');
         return view('admin::index');
     }
 }

@@ -1,7 +1,7 @@
 @if($menu->children_count > 0)
     <li class="site-menu-item has-sub">
         <a href="{{ $menu->permalink }}">
-            <i class="{{ $menu->icon }}" aria-hidden="true"></i>
+            <i class="{{ $menu->icon ?: 'site-menu-icon md-view-dashboard' }}" aria-hidden="true"></i>
             <span class="site-menu-title">{{ $menu->title }}</span>
             <span class="site-menu-arrow"></span>
         </a>
@@ -12,7 +12,7 @@
 @else
     <li class="site-menu-item">
         <a class="animsition-link" href="{{ $menu->permalink }}">
-            <i class="{{ $menu->icon }}" aria-hidden="true"></i>
+            <i class="{{ $menu->icon ?: 'site-menu-icon md-view-dashboard' }}" aria-hidden="true"></i>
             <span class="site-menu-title">{{ $menu->title }}</span>
         </a>
     </li>
