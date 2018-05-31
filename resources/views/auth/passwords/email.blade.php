@@ -1,47 +1,33 @@
-@extends('layouts.app')
+@extends('admin::layouts.auth')
+
+@section('title', __('Reset Password'))
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="panel text-left">
+        <div class="panel-body">
+            <div class="brand">
+                <h2 class="brand-text font-size-18">{{ __('Reset Password') }}</h2>
             </div>
+
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('password.email') }}" autocomplete="off" class="text-left">
+                @csrf
+                <div class="form-group form-material floating" data-plugin="formMaterial">
+                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                           name="email" value="{{ old('email') }}"/>
+                    <label class="floating-label">{{ __('Email') }}</label>
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                    @endif
+                </div>
+                <button type="submit"
+                        class="btn btn-primary btn-block btn-lg mt-40">{{ __('Send Password Reset Link') }}</button>
+            </form>
         </div>
     </div>
-</div>
 @endsection
