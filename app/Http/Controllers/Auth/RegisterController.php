@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -27,40 +26,24 @@ class RegisterController extends Controller
     /**
      * Where to redirect users after registration.
      *
-     * @return string
+     * @var string
      */
-    protected function redirectTo()
-    {
-        return route('admin');
-    }
+    protected $redirectTo = '/home';
 
     /**
-     * @var UserRepository
-     */
-    protected $repository;
-
-    /**
-     * @var UserValidator
-     */
-    protected $validator;
-
-    /**
-     * RegisterController constructor.
+     * Create a new controller instance.
      *
-     * @param UserRepository $repository
-     * @param UserValidator $validator
+     * @return void
      */
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct()
     {
-        $this->repository = $repository;
-        $this->validator = $validator;
         $this->middleware('guest');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -75,16 +58,15 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
-     * @return \App\Entities\User
+     * @param  array  $data
+     * @return \App\User
      */
     protected function create(array $data)
     {
-        $user = $this->repository->create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        return $user;
     }
 }

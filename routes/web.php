@@ -11,15 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-
-$prefix = config('admin.route.prefix', 'admin');
-
-$namespace = 'Admin';
-
-Route::group(['middleware' => ['web', 'auth'], 'prefix' => $prefix, 'namespace' => $namespace,], function () {
-
-    Route::get('/', 'AdminController@index')->name('admin');
-});
+Route::get('/home', 'HomeController@index')->name('home');
