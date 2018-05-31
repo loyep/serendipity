@@ -27,10 +27,21 @@
     <div class="navbar-container container-fluid">
         <!-- Navbar Collapse -->
         <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-            @include('admin::includes.navbar._toolbar')
+        @include('admin::includes.navbar._toolbar')
 
+        <!-- Navbar Toolbar Right -->
+            <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                @include('admin::includes.navbar._languages')
 
-            @include('admin::includes.navbar._profile')
+                @include('admin::includes.navbar._profile')
+
+                @include('admin::includes.navbar._notifications')
+
+                @include('admin::includes.navbar._messages')
+
+                @include('admin::includes.navbar._quick')
+            </ul>
+            <!-- End Navbar Toolbar Right -->
         </div>
         <!-- End Navbar Collapse -->
 
