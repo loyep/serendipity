@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\OptionCreateRequest;
+use App\Http\Requests\OptionUpdateRequest;
+use App\Repositories\OptionRepository;
+use App\Validators\OptionValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\TermCreateRequest;
-use App\Http\Requests\TermUpdateRequest;
-use App\Repositories\TermRepository;
-use App\Validators\TermValidator;
 
 /**
- * Class TermsController.
+ * Class OptionsController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class TermsController extends Controller
+class OptionsController extends Controller
 {
     /**
-     * @var TermRepository
+     * @var OptionRepository
      */
     protected $repository;
 
     /**
-     * @var TermValidator
+     * @var OptionValidator
      */
     protected $validator;
 
     /**
-     * TermsController constructor.
+     * OptionsController constructor.
      *
-     * @param TermRepository $repository
-     * @param TermValidator $validator
+     * @param OptionRepository $repository
+     * @param OptionValidator $validator
      */
-    public function __construct(TermRepository $repository, TermValidator $validator)
+    public function __construct(OptionRepository $repository, OptionValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class TermsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $terms = $this->repository->all();
+        $options = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $terms,
+                'data' => $options,
             ]);
         }
 
-        return view('terms.index', compact('terms'));
+        return view('options.index', compact('options'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TermCreateRequest $request
+     * @param  OptionCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(TermCreateRequest $request)
+    public function store(OptionCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $term = $this->repository->create($request->all());
+            $option = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Term created.',
-                'data'    => $term->toArray(),
+                'message' => 'Option created.',
+                'data' => $option->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class TermsController extends Controller
      */
     public function show($id)
     {
-        $term = $this->repository->find($id);
+        $option = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $term,
+                'data' => $option,
             ]);
         }
 
-        return view('terms.show', compact('term'));
+        return view('options.show', compact('option'));
     }
 
     /**
@@ -131,46 +128,46 @@ class TermsController extends Controller
      */
     public function edit($id)
     {
-        $term = $this->repository->find($id);
+        $option = $this->repository->find($id);
 
-        return view('terms.edit', compact('term'));
+        return view('options.edit', compact('option'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  TermUpdateRequest $request
-     * @param  string            $id
+     * @param  OptionUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(TermUpdateRequest $request, $id)
+    public function update(OptionUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $term = $this->repository->update($request->all(), $id);
+            $option = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Term updated.',
-                'data'    => $term->toArray(),
+                'message' => 'Option updated.',
+                'data' => $option->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class TermsController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'Term deleted.',
+                'message' => 'Option deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Term deleted.');
+        return redirect()->back()->with('message', 'Option deleted.');
     }
 }

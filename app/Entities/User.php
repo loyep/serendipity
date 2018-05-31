@@ -15,7 +15,6 @@ use Prettus\Repository\Traits\TransformableTrait;
 class User extends Authenticatable implements Transformable
 {
     use TransformableTrait;
-
     use Notifiable;
 
     /**
@@ -24,7 +23,7 @@ class User extends Authenticatable implements Transformable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'display_name', 'email', 'url', 'status', 'url', 'password', 'allow_login',
     ];
 
     /**
@@ -35,4 +34,29 @@ class User extends Authenticatable implements Transformable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function getAvatarAttribute()
+    {
+        return gravatar($this->email);
+    }
+
+    /**
+     * The metas of this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function metas()
+    {
+        return $this->hasMany(UserMeta::class, 'user_id');
+    }
+
+    /**
+     * The posts belongs this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
 }

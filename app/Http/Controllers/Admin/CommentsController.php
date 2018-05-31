@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\CommentCreateRequest;
+use App\Http\Requests\CommentUpdateRequest;
+use App\Repositories\CommentRepository;
+use App\Validators\CommentValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\TermPostCreateRequest;
-use App\Http\Requests\TermPostUpdateRequest;
-use App\Repositories\TermPostRepository;
-use App\Validators\TermPostValidator;
 
 /**
- * Class TermPostsController.
+ * Class CommentsController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class TermPostsController extends Controller
+class CommentsController extends Controller
 {
     /**
-     * @var TermPostRepository
+     * @var CommentRepository
      */
     protected $repository;
 
     /**
-     * @var TermPostValidator
+     * @var CommentValidator
      */
     protected $validator;
 
     /**
-     * TermPostsController constructor.
+     * CommentsController constructor.
      *
-     * @param TermPostRepository $repository
-     * @param TermPostValidator $validator
+     * @param CommentRepository $repository
+     * @param CommentValidator $validator
      */
-    public function __construct(TermPostRepository $repository, TermPostValidator $validator)
+    public function __construct(CommentRepository $repository, CommentValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class TermPostsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $termPosts = $this->repository->all();
+        $comments = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $termPosts,
+                'data' => $comments,
             ]);
         }
 
-        return view('termPosts.index', compact('termPosts'));
+        return view('comments.index', compact('comments'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TermPostCreateRequest $request
+     * @param  CommentCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(TermPostCreateRequest $request)
+    public function store(CommentCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $termPost = $this->repository->create($request->all());
+            $comment = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'TermPost created.',
-                'data'    => $termPost->toArray(),
+                'message' => 'Comment created.',
+                'data' => $comment->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class TermPostsController extends Controller
      */
     public function show($id)
     {
-        $termPost = $this->repository->find($id);
+        $comment = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $termPost,
+                'data' => $comment,
             ]);
         }
 
-        return view('termPosts.show', compact('termPost'));
+        return view('comments.show', compact('comment'));
     }
 
     /**
@@ -131,46 +128,46 @@ class TermPostsController extends Controller
      */
     public function edit($id)
     {
-        $termPost = $this->repository->find($id);
+        $comment = $this->repository->find($id);
 
-        return view('termPosts.edit', compact('termPost'));
+        return view('comments.edit', compact('comment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  TermPostUpdateRequest $request
-     * @param  string            $id
+     * @param  CommentUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(TermPostUpdateRequest $request, $id)
+    public function update(CommentUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $termPost = $this->repository->update($request->all(), $id);
+            $comment = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'TermPost updated.',
-                'data'    => $termPost->toArray(),
+                'message' => 'Comment updated.',
+                'data' => $comment->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class TermPostsController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'TermPost deleted.',
+                'message' => 'Comment deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'TermPost deleted.');
+        return redirect()->back()->with('message', 'Comment deleted.');
     }
 }

@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\TagCreateRequest;
+use App\Http\Requests\TagUpdateRequest;
+use App\Repositories\TagRepository;
+use App\Validators\TagValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\MenuCreateRequest;
-use App\Http\Requests\MenuUpdateRequest;
-use App\Repositories\MenuRepository;
-use App\Validators\MenuValidator;
 
 /**
- * Class MenusController.
+ * Class TagsController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class MenusController extends Controller
+class TagsController extends Controller
 {
     /**
-     * @var MenuRepository
+     * @var TagRepository
      */
     protected $repository;
 
     /**
-     * @var MenuValidator
+     * @var TagValidator
      */
     protected $validator;
 
     /**
-     * MenusController constructor.
+     * TagsController constructor.
      *
-     * @param MenuRepository $repository
-     * @param MenuValidator $validator
+     * @param TagRepository $repository
+     * @param TagValidator $validator
      */
-    public function __construct(MenuRepository $repository, MenuValidator $validator)
+    public function __construct(TagRepository $repository, TagValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class MenusController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $menus = $this->repository->all();
+        $tags = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $menus,
+                'data' => $tags,
             ]);
         }
 
-        return view('menus.index', compact('menus'));
+        return view('tags.index', compact('tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  MenuCreateRequest $request
+     * @param  TagCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(MenuCreateRequest $request)
+    public function store(TagCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $menu = $this->repository->create($request->all());
+            $tag = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Menu created.',
-                'data'    => $menu->toArray(),
+                'message' => 'Tag created.',
+                'data' => $tag->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class MenusController extends Controller
      */
     public function show($id)
     {
-        $menu = $this->repository->find($id);
+        $tag = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $menu,
+                'data' => $tag,
             ]);
         }
 
-        return view('menus.show', compact('menu'));
+        return view('tags.show', compact('tag'));
     }
 
     /**
@@ -131,46 +128,46 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        $menu = $this->repository->find($id);
+        $tag = $this->repository->find($id);
 
-        return view('menus.edit', compact('menu'));
+        return view('tags.edit', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  MenuUpdateRequest $request
-     * @param  string            $id
+     * @param  TagUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(MenuUpdateRequest $request, $id)
+    public function update(TagUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $menu = $this->repository->update($request->all(), $id);
+            $tag = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Menu updated.',
-                'data'    => $menu->toArray(),
+                'message' => 'Tag updated.',
+                'data' => $tag->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class MenusController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'Menu deleted.',
+                'message' => 'Tag deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Menu deleted.');
+        return redirect()->back()->with('message', 'Tag deleted.');
     }
 }

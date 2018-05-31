@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\UserRepository;
+use App\Validators\UserValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\UserMetaCreateRequest;
-use App\Http\Requests\UserMetaUpdateRequest;
-use App\Repositories\UserMetaRepository;
-use App\Validators\UserMetaValidator;
 
 /**
- * Class UserMetasController.
+ * Class UsersController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class UserMetasController extends Controller
+class UsersController extends Controller
 {
     /**
-     * @var UserMetaRepository
+     * @var UserRepository
      */
     protected $repository;
 
     /**
-     * @var UserMetaValidator
+     * @var UserValidator
      */
     protected $validator;
 
     /**
-     * UserMetasController constructor.
+     * UsersController constructor.
      *
-     * @param UserMetaRepository $repository
-     * @param UserMetaValidator $validator
+     * @param UserRepository $repository
+     * @param UserValidator $validator
      */
-    public function __construct(UserMetaRepository $repository, UserMetaValidator $validator)
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class UserMetasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $userMetas = $this->repository->all();
+        $users = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $userMetas,
+                'data' => $users,
             ]);
         }
 
-        return view('userMetas.index', compact('userMetas'));
+        return view('users.index', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserMetaCreateRequest $request
+     * @param  UserCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(UserMetaCreateRequest $request)
+    public function store(UserCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $userMetum = $this->repository->create($request->all());
+            $user = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'UserMeta created.',
-                'data'    => $userMetum->toArray(),
+                'message' => 'User created.',
+                'data' => $user->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class UserMetasController extends Controller
      */
     public function show($id)
     {
-        $userMetum = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $userMetum,
+                'data' => $user,
             ]);
         }
 
-        return view('userMetas.show', compact('userMetum'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -131,46 +128,46 @@ class UserMetasController extends Controller
      */
     public function edit($id)
     {
-        $userMetum = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
-        return view('userMetas.edit', compact('userMetum'));
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserMetaUpdateRequest $request
-     * @param  string            $id
+     * @param  UserUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(UserMetaUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $userMetum = $this->repository->update($request->all(), $id);
+            $user = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'UserMeta updated.',
-                'data'    => $userMetum->toArray(),
+                'message' => 'User updated.',
+                'data' => $user->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class UserMetasController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'UserMeta deleted.',
+                'message' => 'User deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'UserMeta deleted.');
+        return redirect()->back()->with('message', 'User deleted.');
     }
 }

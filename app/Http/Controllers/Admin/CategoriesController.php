@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryUpdateRequest;
+use App\Repositories\CategoryRepository;
+use App\Validators\CategoryValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\PostMetaCreateRequest;
-use App\Http\Requests\PostMetaUpdateRequest;
-use App\Repositories\PostMetaRepository;
-use App\Validators\PostMetaValidator;
 
 /**
- * Class PostMetasController.
+ * Class CategoriesController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
-class PostMetasController extends Controller
+class CategoriesController extends Controller
 {
     /**
-     * @var PostMetaRepository
+     * @var CategoryRepository
      */
     protected $repository;
 
     /**
-     * @var PostMetaValidator
+     * @var CategoryValidator
      */
     protected $validator;
 
     /**
-     * PostMetasController constructor.
+     * CategoriesController constructor.
      *
-     * @param PostMetaRepository $repository
-     * @param PostMetaValidator $validator
+     * @param CategoryRepository $repository
+     * @param CategoryValidator $validator
      */
-    public function __construct(PostMetaRepository $repository, PostMetaValidator $validator)
+    public function __construct(CategoryRepository $repository, CategoryValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -49,50 +46,50 @@ class PostMetasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $postMetas = $this->repository->all();
+        $categories = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $postMetas,
+                'data' => $categories,
             ]);
         }
 
-        return view('postMetas.index', compact('postMetas'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PostMetaCreateRequest $request
+     * @param  CategoryCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(PostMetaCreateRequest $request)
+    public function store(CategoryCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $postMetum = $this->repository->create($request->all());
+            $category = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'PostMeta created.',
-                'data'    => $postMetum->toArray(),
+                'message' => 'Category created.',
+                'data' => $category->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+        } catch ( ValidatorException $e ) {
+            if ( $request->wantsJson() ) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -110,16 +107,16 @@ class PostMetasController extends Controller
      */
     public function show($id)
     {
-        $postMetum = $this->repository->find($id);
+        $category = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'data' => $postMetum,
+                'data' => $category,
             ]);
         }
 
-        return view('postMetas.show', compact('postMetum'));
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -131,46 +128,46 @@ class PostMetasController extends Controller
      */
     public function edit($id)
     {
-        $postMetum = $this->repository->find($id);
+        $category = $this->repository->find($id);
 
-        return view('postMetas.edit', compact('postMetum'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  PostMetaUpdateRequest $request
-     * @param  string            $id
+     * @param  CategoryUpdateRequest $request
+     * @param  string $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(PostMetaUpdateRequest $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $postMetum = $this->repository->update($request->all(), $id);
+            $category = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'PostMeta updated.',
-                'data'    => $postMetum->toArray(),
+                'message' => 'Category updated.',
+                'data' => $category->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch ( ValidatorException $e ) {
 
-            if ($request->wantsJson()) {
+            if ( $request->wantsJson() ) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -191,14 +188,14 @@ class PostMetasController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        if ( request()->wantsJson() ) {
 
             return response()->json([
-                'message' => 'PostMeta deleted.',
+                'message' => 'Category deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'PostMeta deleted.');
+        return redirect()->back()->with('message', 'Category deleted.');
     }
 }
