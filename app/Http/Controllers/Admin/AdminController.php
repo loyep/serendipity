@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\Menu;
+use function PHPSTORM_META\type;
+
 class AdminController extends Controller
 {
     /**
@@ -21,8 +24,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-//        $routes = app()->routes->getRoutes();
-//        dd($routes);
         return view('admin::index');
     }
 }

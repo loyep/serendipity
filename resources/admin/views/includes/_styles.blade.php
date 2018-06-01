@@ -14,10 +14,6 @@
 <link rel="stylesheet" href="/assets/admin/vendor/slidepanel/slidePanel.css">
 <link rel="stylesheet" href="/assets/admin/vendor/flag-icon-css/flag-icon.css">
 <link rel="stylesheet" href="/assets/admin/vendor/waves/waves.css">
-<link rel="stylesheet" href="/assets/admin/vendor/chartist/chartist.css">
-<link rel="stylesheet" href="/assets/admin/vendor/jvectormap/jquery-jvectormap.css">
-<link rel="stylesheet" href="/assets/admin/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-<link rel="stylesheet" href="/assets/admin/assets/examples/css/dashboard/v1.css">
 
 <!-- Fonts -->
 <link rel="stylesheet" href="/assets/admin/fonts/material-design/material-design.min.css">

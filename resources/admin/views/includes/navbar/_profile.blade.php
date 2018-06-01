@@ -1,13 +1,12 @@
-
 <li class="nav-item dropdown">
     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
        data-animation="scale-up" role="button">
-            <span class="avatar">
-                <img src="{{ Auth::user()->avatar }}" alt="...">
-            </span>
+        <span class="avatar">
+            <img src="{{ Auth::user()->avatar }}" alt="...">
+        </span>
     </a>
     <div class="dropdown-menu" role="menu">
-        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account"
+        <a class="dropdown-item" href="{{ route('admin.users.profile') }}" role="menuitem"><i class="icon md-account"
                                                                               aria-hidden="true"></i>
             Profile</a>
         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-card"
@@ -18,7 +17,7 @@
             Settings</a>
         <div class="dropdown-divider" role="presentation"></div>
         <a class="dropdown-item" href="{{ route('admin.lock') }}" role="menuitem"><i class="icon md-lock"
-                                                                              aria-hidden="true"></i>
+                                                                                     aria-hidden="true"></i>
             Lock</a>
         <a class="dropdown-item" href="{{ route('logout') }}"
            onclick="event.preventDefault();document.getElementById('logout-form').submit();"

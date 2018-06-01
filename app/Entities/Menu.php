@@ -48,11 +48,20 @@ class Menu extends Model implements Transformable
 
     public function getPermalinkAttribute()
     {
-        if ( !empty($this->route) && $route = route($this->route)) {
+        if ( !empty($this->route) ) {
+
+            $parameters = json_decode($this->parameters, true);
+            
+            if ( !is_array($parameters) ) {
+                $parameters = array();
+            }
+            
+            $route = route($this->route, $parameters);
+
             return $route;
         }
 
-        if (!empty($this->url)) {
+        if ( !empty($this->url) ) {
             return url($this->url);
         }
         return 'javascript:void(0)';

@@ -1,28 +1,30 @@
 <li class="site-menu-category">General</li>
 {{--@foreach(\App\Entities\Menu::menus() as $topMenu)--}}
-    {{--<li class="site-menu-item{{ $topMenu->children_count > 0 ? ' has-sub' : '' }}">--}}
-        {{--<a href="{{ $topMenu->permalink }}">--}}
-            {{--<i class="site-menu-icon md-view-compact" aria-hidden="true"></i>--}}
-            {{--<span class="site-menu-title">Layouts</span>--}}
-            {{--@if($topMenu->children_count > 0)--}}
-                {{--<span class="site-menu-arrow"></span>--}}
-            {{--@endif--}}
-        {{--</a>--}}
-        {{--@if($topMenu->children_count > 0)--}}
-            {{--<ul class="site-menu-sub">--}}
-                {{--@foreach($topMenu->children as $child)--}}
-                    {{--<li class="site-menu-item">--}}
-                        {{--<a class="animsition-link" href="{{ $child->permalink }}">--}}
-                            {{--<span class="site-menu-title">{{ $child->title }}</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--@endforeach--}}
-            {{--</ul>--}}
-        {{--@endif--}}
-    {{--</li>--}}
-    {{--@component('')--}}
+{{--<li class="site-menu-item{{ $topMenu->children_count > 0 ? ' has-sub' : '' }}">--}}
+{{--<a href="{{ $topMenu->permalink }}">--}}
+{{--<i class="site-menu-icon md-view-compact" aria-hidden="true"></i>--}}
+{{--<span class="site-menu-title">Layouts</span>--}}
+{{--@if($topMenu->children_count > 0)--}}
+{{--<span class="site-menu-arrow"></span>--}}
+{{--@endif--}}
+{{--</a>--}}
+{{--@if($topMenu->children_count > 0)--}}
+{{--<ul class="site-menu-sub">--}}
+{{--@foreach($topMenu->children as $child)--}}
+{{--<li class="site-menu-item">--}}
+{{--<a class="animsition-link" href="{{ $child->permalink }}">--}}
+{{--<span class="site-menu-title">{{ $child->title }}</span>--}}
+{{--</a>--}}
+{{--</li>--}}
 {{--@endforeach--}}
+{{--</ul>--}}
+{{--@endif--}}
+{{--</li>--}}
+{{--@component('')--}}
+{{--@endforeach--}}
+
 @each('admin::includes.sidebar._nav-item', \App\Entities\Menu::menus(), 'menu')
+
 {{--<li class="site-menu-item active">--}}
 {{--<a class="animsition-link" href="#">--}}
 {{--<i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>--}}

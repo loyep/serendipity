@@ -1,4 +1,4 @@
-<a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip"
+<a href="{{ route('admin.users.profile') }}" class="fold-show" data-placement="top" data-toggle="tooltip"
    data-original-title="Settings">
     <span class="icon md-settings" aria-hidden="true"></span>
 </a>

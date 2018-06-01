@@ -227,6 +227,5 @@ class UsersController extends Controller
         } catch ( ValidatorException $e ) {
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
-
     }
 }

@@ -25,4 +25,9 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => $prefix, 'namespace' 
 
         Route::get('lock', 'UsersController@lock')->name('admin.lock');
         Route::post('lock', 'UsersController@unlock');
+
+        Route::get('options/{group?}', 'OptionsController@group')->name('admin.options.group');
+//        Route::post('options/{group}', 'OptionsController@groupIndex');//->name('admin.options.group');
+
+        Route::get('users/profile', 'UsersController@profile')->name('admin.users.profile');
     });

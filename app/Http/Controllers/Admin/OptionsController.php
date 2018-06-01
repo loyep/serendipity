@@ -198,4 +198,36 @@ class OptionsController extends Controller
 
         return redirect()->back()->with('message', 'Option deleted.');
     }
+
+    public function group($group)
+    {
+        $options = $this->repository->findByField('group', $group);
+        return view('admin::options.group', compact('options'));
+    }
+
+    /**
+     * @param OptionUpdateRequest $request
+     * @param $group
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateGroup(OptionUpdateRequest $request, $group = 'general')
+    {
+        $options = $this->repository->findByField('group', $group);
+        foreach ( $options as $option ) {
+            $key = preg_replace('/^' . str_slug($option->group) . './i', '', $option->key);
+            $option->key = implode('.', [str_slug($option->group), $key]);
+//            $content = Option::getContentBasedOnType($request, (object)[
+//                'type' => $option->type,
+//                'field' => str_replace('.', '_', $option->key),
+//                'details' => $option->details,
+//                'group' => $option->group,
+//            ]);
+            $content = '';
+
+            $option->group = $group;
+            $option->value = $content;
+            $option->save();
+        }
+        return redirect()->back()->with('message', 'Option updated.');
+    }
 }
