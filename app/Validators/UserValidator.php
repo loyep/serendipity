@@ -2,8 +2,8 @@
 
 namespace App\Validators;
 
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\LaravelValidator;
 
 /**
  * Class UserValidator.
@@ -20,5 +20,8 @@ class UserValidator extends LaravelValidator
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [],
         ValidatorInterface::RULE_UPDATE => [],
+        'Unlock' => [
+            'password' => 'exists:states',
+        ],
     ];
 }

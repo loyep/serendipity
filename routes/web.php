@@ -21,6 +21,8 @@ $namespace = 'Admin';
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => $prefix, 'namespace' => $namespace,],
     function () {
-
         Route::get('/', 'AdminController@index')->name('admin');
+
+        Route::get('lock', 'UsersController@lock')->name('admin.lock');
+        Route::post('lock', 'UsersController@unlock');
     });

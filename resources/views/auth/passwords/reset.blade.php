@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group form-material floating" data-plugin="formMaterial">
-                    <input type="password" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                            name="password"/>
                     <label class="floating-label">{{ __('Password') }}</label>
                     @if ($errors->has('password'))

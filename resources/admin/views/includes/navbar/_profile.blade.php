@@ -17,7 +17,7 @@
                                                                               aria-hidden="true"></i>
             Settings</a>
         <div class="dropdown-divider" role="presentation"></div>
-        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-lock"
+        <a class="dropdown-item" href="{{ route('admin.lock') }}" role="menuitem"><i class="icon md-lock"
                                                                               aria-hidden="true"></i>
             Lock</a>
         <a class="dropdown-item" href="{{ route('logout') }}"

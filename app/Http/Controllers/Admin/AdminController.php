@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\Serendipity;
-
 class AdminController extends Controller
 {
     /**
@@ -23,7 +21,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $options = Serendipity::js('');
+//        $routes = app()->routes->getRoutes();
+//        dd($routes);
         return view('admin::index');
     }
 }

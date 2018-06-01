@@ -2,7 +2,7 @@
    data-original-title="Settings">
     <span class="icon md-settings" aria-hidden="true"></span>
 </a>
-<a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
+<a href="{{ route('admin.lock') }}" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
     <span class="icon md-eye-off" aria-hidden="true"></span>
 </a>
 <a href="{{ route('logout') }}"

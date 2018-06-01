@@ -6,6 +6,9 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -197,5 +200,33 @@ class UsersController extends Controller
         }
 
         return redirect()->back()->with('message', 'User deleted.');
+    }
+
+    public function lock()
+    {
+        return view('admin::auth.lock');
+    }
+
+    public function unlock(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $credentials = [
+                'email' => $user->email,
+                'password' => $request->input('password'),
+            ];
+
+            if ( !Auth::validate($credentials) ) {
+                throw ValidationException::withMessages([
+                    'password' => [trans('auth.failed')],
+                ]);
+            }
+
+            $message = 'User updated.';
+            return redirect()->route('admin')->with('message', $message);
+        } catch ( ValidatorException $e ) {
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
+
     }
 }
