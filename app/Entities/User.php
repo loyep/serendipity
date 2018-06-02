@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,7 +25,14 @@ class User extends Authenticatable implements Transformable
      * @var array
      */
     protected $fillable = [
-        'name', 'display_name', 'email', 'url', 'status', 'url', 'password', 'allow_login',
+        'name',
+        'display_name',
+        'email',
+        'url',
+        'status',
+        'url',
+        'password',
+        'allow_login',
     ];
 
     /**
@@ -33,7 +41,8 @@ class User extends Authenticatable implements Transformable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     function getAvatarAttribute()
@@ -60,4 +69,21 @@ class User extends Authenticatable implements Transformable
     {
         return $this->hasMany(Post::class, 'user_id');
     }
+
+    public function allPermissions()
+    {
+        return array();
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    public function menus()
+    {
+        $menus = $this->roles()->first()->menus;
+        return $menus;
+    }
+
 }

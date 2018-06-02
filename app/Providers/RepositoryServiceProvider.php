@@ -38,6 +38,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\OperationLogRepository::class, \App\Repositories\OperationLogRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\MenuRepository::class, \App\Repositories\MenuRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\PostMetaRepository::class, \App\Repositories\PostMetaRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\PermissionRepository::class, \App\Repositories\PermissionRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\RoleRepository::class, \App\Repositories\RoleRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\UserRoleRepository::class, \App\Repositories\UserRoleRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\PermissionRoleRepository::class, \App\Repositories\PermissionRoleRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\RoleMenuRepository::class, \App\Repositories\RoleMenuRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\MenuGroupRepository::class, \App\Repositories\MenuGroupRepositoryEloquent::class);
         //:end-bindings:
     }
 }

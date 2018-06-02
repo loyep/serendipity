@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="/assets/admin/vendor/waves/waves.css">
     <link rel="stylesheet" href="/assets/admin/assets/examples/css/pages/login-v3.css">
 
-
     <!-- Fonts -->
     <link rel="stylesheet" href="/assets/admin/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="/assets/admin/fonts/brand-icons/brand-icons.min.css">

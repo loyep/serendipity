@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Entities\Menu;
-use function PHPSTORM_META\type;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -24,6 +23,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        dd($user->menus());
         return view('admin::index');
     }
 }

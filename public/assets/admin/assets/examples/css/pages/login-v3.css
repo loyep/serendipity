@@ -48,8 +48,10 @@
     }
 
     .page-login-v3 .panel {
-        width: auto;
+        /*width: auto;*/
         padding: 10px;
+        /*min-width: 300px;*/
+        width: 300px;
     }
 
     .page-login-v3 .panel .panel-body {

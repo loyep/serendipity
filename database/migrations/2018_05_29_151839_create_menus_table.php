@@ -26,7 +26,7 @@ class CreateMenusTable extends Migration
             $table->string('route')->nullable();
             $table->string('url')->nullable();
             $table->text('parameters')->nullable();
-            $table->string('group')->nullable();
+            $table->unsignedInteger('group_id')->default(0);
             $table->timestamps();
         });
     }
