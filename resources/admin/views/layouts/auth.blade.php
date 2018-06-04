@@ -36,7 +36,7 @@
     <style type="text/css">
         @media (min-width: 480px) {
             .page-login-v3:before {
-                background: url(@yield('bg-img', '/assets/admin/assets/images/register.jpeg')) center center no-repeat;
+                background: url(@yield('bg-img', '/assets/admin/assets/images/login-bg.jpg')) center center no-repeat;
             }
         }
     </style>
@@ -69,16 +69,13 @@
         @section('content')
             <footer class="page-copyright page-copyright-inverse">
                 <div class="social">
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                    <a class="btn btn-icon btn-pure" target="_blank" href="https://weibo.com/u/3966998081">
                         <i class="icon bd-qq" aria-hidden="true"></i>
                     </a>
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                        <i class="icon bd-webchat" aria-hidden="true"></i>
+                    <a class="btn btn-icon btn-pure" target="_blank" href="https://www.linkedin.com/in/lorenliuz/">
+                        <i class="icon bd-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                        <i class="icon bd-weibo" aria-hidden="true"></i>
-                    </a>
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                    <a class="btn btn-icon btn-pure" target="_blank" href="https://github.com/lorenliuz">
                         <i class="icon bd-github" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -89,7 +86,6 @@
     </div>
 </div>
 <!-- End Page -->
-
 
 <!-- Core  -->
 <script src="/assets/admin/vendor/babel-external-helpers/babel-external-helpers.js"></script>
