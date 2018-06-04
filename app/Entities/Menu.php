@@ -26,7 +26,7 @@ class Menu extends Model implements Transformable
 
     public static function menus()
     {
-        $menus = Menu::has('parent', '=', 0)->withCount('children')->with('children')->get();
+        $menus = Menu::has('parent', '=', 0)->withCount('children')->with('children')->orderBy('order')->get();
         return $menus;
     }
 
@@ -46,7 +46,7 @@ class Menu extends Model implements Transformable
         return $this->hasMany(Menu::class, 'parent_id');
     }
 
-    public function getPermalinkAttribute()
+    public function permalink()
     {
         if ( !empty($this->route) ) {
 

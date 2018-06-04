@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/assets/admin/vendor/slidepanel/slidePanel.css">
 <link rel="stylesheet" href="/assets/admin/vendor/flag-icon-css/flag-icon.css">
 <link rel="stylesheet" href="/assets/admin/vendor/waves/waves.css">
+@yield('style-plugins')
 
 <!-- Fonts -->
 <link rel="stylesheet" href="/assets/admin/fonts/material-design/material-design.min.css">

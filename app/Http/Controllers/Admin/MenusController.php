@@ -55,7 +55,7 @@ class MenusController extends Controller
             ]);
         }
 
-        return view('menus.index', compact('menus'));
+        return view('admin::menus.index', compact('menus'));
     }
 
     /**

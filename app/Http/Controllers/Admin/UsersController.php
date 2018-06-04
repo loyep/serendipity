@@ -210,7 +210,7 @@ class UsersController extends Controller
     public function unlock(Request $request)
     {
         try {
-            $user = Auth::user();
+            $user = $request->user();
             $credentials = [
                 'email' => $user->email,
                 'password' => $request->input('password'),
@@ -227,5 +227,10 @@ class UsersController extends Controller
         } catch ( ValidatorException $e ) {
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
+    }
+
+    public function profile(Request $request)
+    {
+        dd($request->user());
     }
 }

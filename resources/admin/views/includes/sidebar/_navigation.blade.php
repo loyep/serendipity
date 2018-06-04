@@ -1,3 +1,3 @@
 <li class="site-menu-category"></li>
 
-@each('admin::includes.sidebar._nav-item', \App\Entities\Menu::menus(), 'menu')
+@include('admin::includes.sidebar._nav-item', ['menus' => \App\Entities\Menu::menus()])

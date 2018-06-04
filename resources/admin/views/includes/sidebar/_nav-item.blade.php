@@ -1,19 +1,44 @@
-@if($menu->children_count > 0)
-    <li class="site-menu-item has-sub">
-        <a href="{{ $menu->permalink }}">
-            <i class="{{ $menu->icon ?: 'site-menu-icon md-view-dashboard' }}" aria-hidden="true"></i>
+@foreach($menus as $menu)
+
+    @php
+        $href = $menu->permalink();
+        $listItemClass = ['site-menu-item'];
+
+        $hasChildren = false;
+
+        if ($menu->children_count > 0) {
+            array_push($listItemClass, 'has-sub');
+        }
+
+        if (url($href) == url()->current()) {
+            array_push($listItemClass, 'active');
+        }
+
+        if (!$menu->children->isEmpty()) {
+            foreach ($menu->children as $child)
+            {
+                $hasChildren = $hasChildren || 1;
+                if (url($child->permalink()) == url()->current()) {
+                    array_push($listItemClass, 'active open');
+                }
+            }
+        } else {
+
+        }
+    @endphp
+
+    <li class="{{ implode(" ", $listItemClass) }}">
+        <a href="{{ $href }}">
+            <i class="site-menu-icon {{ $menu->icon }}" aria-hidden="true"></i>
             <span class="site-menu-title">{{ $menu->title }}</span>
-            <span class="site-menu-arrow"></span>
+            @if($hasChildren)
+                <span class="site-menu-arrow"></span>
+            @endif
         </a>
-        <ul class="site-menu-sub">
-            @each('admin::includes.sidebar._nav-item', $menu->children, 'menu')
-        </ul>
+        @if($hasChildren)
+            <ul class="site-menu-sub">
+                @include('admin::includes.sidebar._nav-item', ['menus' => $menu->children])
+            </ul>
+        @endif
     </li>
-@else
-    <li class="site-menu-item">
-        <a href="{{ $menu->permalink }}">
-            <i class="{{ $menu->icon ?: 'site-menu-icon md-view-dashboard' }}" aria-hidden="true"></i>
-            <span class="site-menu-title">{{ $menu->title }}</span>
-        </a>
-    </li>
-@endif
+@endforeach

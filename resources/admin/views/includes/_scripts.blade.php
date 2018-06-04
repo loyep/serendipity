@@ -37,6 +37,8 @@
 <script src="/assets/admin/js/Plugin/slidepanel.js"></script>
 <script src="/assets/admin/js/Plugin/switchery.js"></script>
 
+@yield('script-plugins')
+
 <script>
     (function (document, window, $) {
         'use strict';

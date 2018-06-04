@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ use App\Validators\PermissionValidator;
 /**
  * Class PermissionsController.
  *
- * @package namespace App\Http\Controllers;
+ * @package namespace App\Http\Controllers\Admin;
  */
 class PermissionsController extends Controller
 {
