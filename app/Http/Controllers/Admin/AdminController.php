@@ -23,8 +23,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        dd($user->menus());
         return view('admin::index');
     }
 }

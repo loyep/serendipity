@@ -11,7 +11,7 @@
     </li>
 @else
     <li class="site-menu-item">
-        <a class="animsition-link" href="{{ $menu->permalink }}">
+        <a href="{{ $menu->permalink }}">
             <i class="{{ $menu->icon ?: 'site-menu-icon md-view-dashboard' }}" aria-hidden="true"></i>
             <span class="site-menu-title">{{ $menu->title }}</span>
         </a>
