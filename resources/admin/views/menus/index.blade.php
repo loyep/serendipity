@@ -39,12 +39,7 @@
         <div class="page-content">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Nestable
-                        <small>
-                            <a class="example-plugin-link" href="https://github.com/RamonSmit/Nestable"
-                               target="_blank">official website</a>
-                        </small>
-                    </h3>
+                    <h3 class="panel-title"></h3>
                 </div>
                 <div class="panel-body container-fluid">
                     <div class="row row-lg">
@@ -54,49 +49,49 @@
                                     @include('admin::components.menus._menus-item', ['menus' => \App\Entities\Menu::menus()])
                                 </ul>
                                 {{--<ul class="dd-list">--}}
-                                    {{--<li class="dd-item dd-item-alt" data-id="1">--}}
-                                        {{--<div class="dd-handle"></div>--}}
-                                        {{--<div class="dd-content">ITEM 1--}}
-                                            {{--<span class="float-right md-wrench"></span>--}}
-                                        {{--</div>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="dd-item dd-item-alt" data-id="2">--}}
-                                        {{--<div class="dd-handle"></div>--}}
-                                        {{--<div class="dd-content">ITEM 2--}}
-                                            {{--<span class="float-right md-settings"></span>--}}
-                                        {{--</div>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="dd-item dd-item-alt" data-id="3">--}}
-                                        {{--<div class="dd-handle"></div>--}}
-                                        {{--<div class="dd-content">ITEM 3</div>--}}
-                                        {{--<ol class="dd-list">--}}
-                                            {{--<li class="dd-item dd-item-alt" data-id="4">--}}
-                                                {{--<div class="dd-handle"></div>--}}
-                                                {{--<div class="dd-content">ITEM 4</div>--}}
-                                            {{--</li>--}}
-                                            {{--<li class="dd-item dd-item-alt" data-id="5" data-foo="bar">--}}
-                                                {{--<div class="dd-handle"></div>--}}
-                                                {{--<div class="dd-content">ITEM 5</div>--}}
-                                            {{--</li>--}}
-                                        {{--</ol>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="dd-item dd-item-alt" data-id="6">--}}
-                                        {{--<div class="dd-handle"></div>--}}
-                                        {{--<div class="dd-content">ITEM 6</div>--}}
-                                        {{--<ol class="dd-list">--}}
-                                            {{--<li class="dd-item dd-item-alt" data-id="7">--}}
-                                                {{--<div class="dd-handle"></div>--}}
-                                                {{--<div class="dd-content">ITEM 7</div>--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="1">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 1--}}
+                                {{--<span class="float-right md-wrench"></span>--}}
+                                {{--</div>--}}
+                                {{--</li>--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="2">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 2--}}
+                                {{--<span class="float-right md-settings"></span>--}}
+                                {{--</div>--}}
+                                {{--</li>--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="3">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 3</div>--}}
+                                {{--<ol class="dd-list">--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="4">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 4</div>--}}
+                                {{--</li>--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="5" data-foo="bar">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 5</div>--}}
+                                {{--</li>--}}
+                                {{--</ol>--}}
+                                {{--</li>--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="6">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 6</div>--}}
+                                {{--<ol class="dd-list">--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="7">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 7</div>--}}
 
-                                                {{--<ol class="dd-list">--}}
-                                                    {{--<li class="dd-item dd-item-alt" data-id="8">--}}
-                                                        {{--<div class="dd-handle"></div>--}}
-                                                        {{--<div class="dd-content">ITEM 8</div>--}}
-                                                    {{--</li>--}}
-                                                {{--</ol>--}}
-                                            {{--</li>--}}
-                                        {{--</ol>--}}
-                                    {{--</li>--}}
+                                {{--<ol class="dd-list">--}}
+                                {{--<li class="dd-item dd-item-alt" data-id="8">--}}
+                                {{--<div class="dd-handle"></div>--}}
+                                {{--<div class="dd-content">ITEM 8</div>--}}
+                                {{--</li>--}}
+                                {{--</ol>--}}
+                                {{--</li>--}}
+                                {{--</ol>--}}
+                                {{--</li>--}}
                                 {{--</ul>--}}
                             </div>
                         </div>
