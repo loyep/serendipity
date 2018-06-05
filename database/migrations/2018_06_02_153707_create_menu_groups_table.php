@@ -19,7 +19,7 @@ class CreateMenuGroupsTable extends Migration
         Schema::create('menu_groups',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->unsignedInteger('name');
+                $table->string('name');
                 $table->timestamps();
                 $table->unique('name');
             });

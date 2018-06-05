@@ -23,6 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        request()->user()->menus();
         return view('admin::index');
     }
 }

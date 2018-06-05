@@ -8,6 +8,19 @@
 @section('script-plugins')
     <script src="/assets/admin/vendor/nestable/jquery.nestable.min.js?v4.0.1"></script>
     <script src="/assets/admin/js/Plugin/nestable.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.dd').nestable({
+                beforeDragStop: function(l,e, p){
+                    console.log(e.data('id'));
+                    // l is the main container
+                    // e is the element that was moved
+                    // p is the place where element was moved.
+                }
+            });
+        });
+    </script>
 @endsection
 
 @section('content')

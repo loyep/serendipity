@@ -22,12 +22,20 @@ class Menu extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['id', 'parent_id', 'order', 'title', 'icon', 'target', 'route', 'url', 'parameters', 'group'];
+    protected $fillable = ['id', 'parent_id', 'order', 'title', 'icon', 'target', 'route', 'url', 'parameters', 'group_id'];
 
     public static function menus()
     {
         $menus = Menu::has('parent', '=', 0)->withCount('children')->with('children')->orderBy('order')->get();
         return $menus;
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(MenuGroup::class, 'group_id');
     }
 
     /**
@@ -51,11 +59,11 @@ class Menu extends Model implements Transformable
         if ( !empty($this->route) ) {
 
             $parameters = json_decode($this->parameters, true);
-            
+
             if ( !is_array($parameters) ) {
                 $parameters = array();
             }
-            
+
             $route = route($this->route, $parameters);
 
             return $route;

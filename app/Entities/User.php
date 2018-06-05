@@ -82,7 +82,11 @@ class User extends Authenticatable implements Transformable
 
     public function menus()
     {
-        $menus = $this->roles()->first()->menus;
+        $menuGroup = $this->roles()->first()->name;
+        $menus = Menu::with(['parent', 'group'])->where([
+            ['parent_id', '=', 0],
+        ])->withCount('children')->with('children')->orderBy('order')->get();
+        dd($menus);
         return $menus;
     }
 

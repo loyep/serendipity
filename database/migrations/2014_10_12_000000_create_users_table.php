@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('display_name')->nullable()->comment('显示名称');
             $table->string('url', 100)->nullable()->comment('网址');
             $table->integer('status')->default(0)->comment('状态');
-            $table->unsignedInteger('role_id')->nullable();
             $table->boolean('allow_login')->default('1')->comment('允许登录');
             $table->rememberToken();
             $table->timestamps();
