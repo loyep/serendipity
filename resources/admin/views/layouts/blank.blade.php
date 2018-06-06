@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="TheAdmin - Responsive Bootstrap 4 Admin, Dashboard &amp; WebApp Template">
     <meta name="keywords" content="dashboard, index, main">
-    <title>The Admin Template of 2018</title><!-- Fonts -->
+    <title>@yield('title', __('Dashboard')) | {{ config('app.name') }}</title><!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i|Dosis:300,500" rel="stylesheet">
     <!-- Styles -->
     <link href="/assets/static/css/core.min.css" rel="stylesheet">
