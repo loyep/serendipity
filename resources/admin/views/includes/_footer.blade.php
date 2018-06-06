@@ -1,4 +1,15 @@
-<footer class="site-footer font-size-12">
-    <div class="site-footer-legal ">© {{ date('Y') }} <a href="https://maxsey.com">Serendipity</a></div>
-    <div class="site-footer-right text-capitalize">Made with love for a better web.</div>
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-center text-md-left">
+                Copyright © {{ date('Y') }} <a href="https://lorencode.com">Serendipity</a>.
+                All rights reserved.
+            </p>
+        </div>
+        <div class="col-md-6 text-right">
+            <p>Made with love for a better web.</p>
+        </div>
+    </div>
 </footer>
+<!-- END Footer -->

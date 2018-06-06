@@ -17,5 +17,8 @@
   "Sign out": "退出",
   "Lock": "锁定",
   "Profile": "个人资料",
-  "Settings": "设置"
+  "Settings": "设置",
+  "Unlock": "解锁",
+  "Sign in as a different user": "登录其他账户",
+  "Enter your password to retrieve your session": "输入您的密码以解锁会话"
 }

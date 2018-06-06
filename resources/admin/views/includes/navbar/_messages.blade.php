@@ -1,98 +1,108 @@
-<li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Messages"
-       aria-expanded="false" data-animation="scale-up" role="button">
-        <i class="icon md-email" aria-hidden="true"></i>
-        <span class="badge badge-pill badge-info up">3</span>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-        <div class="dropdown-menu-header" role="presentation">
-            <h5>MESSAGES</h5>
-            <span class="badge badge-round badge-info">New 3</span>
-        </div>
-
-        <div class="list-group" role="presentation">
-            <div data-role="container">
-                <div data-role="content">
-                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-online">
-                              <img src="/assets/admin/portraits/2.jpg" alt="..."/>
-                              <i></i>
-                            </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Mary Adams</h6>
-                                <div class="media-meta">
-                                    <time datetime="2017-06-17T20:22:05+08:00">30 minutes ago</time>
-                                </div>
-                                <div class="media-detail">Anyways, i would like just do it</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-off">
-                              <img src="/assets/admin/portraits/3.jpg" alt="..."/>
-                              <i></i>
-                            </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Caleb Richards</h6>
-                                <div class="media-meta">
-                                    <time datetime="2017-06-17T12:30:30+08:00">12 hours ago</time>
-                                </div>
-                                <div class="media-detail">I checheck the document. But there seems</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-busy">
-                              <img src="/assets/admin/portraits/4.jpg" alt="..."/>
-                              <i></i>
-                            </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">June Lane</h6>
-                                <div class="media-meta">
-                                    <time datetime="2017-06-16T18:38:40+08:00">2 days ago</time>
-                                </div>
-                                <div class="media-detail">Lorem ipsum Id consectetur et minim</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-away">
-                              <img src="/assets/admin/portraits/5.jpg" alt="..."/>
-                              <i></i>
-                            </span>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Edward Fletcher</h6>
-                                <div class="media-meta">
-                                    <time datetime="2017-06-15T20:34:48+08:00">3 days ago</time>
-                                </div>
-                                <div class="media-detail">Dolor et irure cupidatat commodo nostrud
-                                    nostrud.
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+<!-- Messages -->
+<li class="dropdown d-none d-md-block">
+    <span class="topbar-btn" data-toggle="dropdown"><i class="ti-email"></i></span>
+    <div class="dropdown-menu dropdown-menu-right">
+        <div class="media-list media-list-divided media-list-hover media-list-xs scrollable"
+             style="height: 290px">
+            <a class="media media-new1" href="page-app/mailbox-single.html">
+				<span class="avatar status-success">
+				<img src="/assets/static/img/avatar/1.jpg" alt="...">
+				</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Maryam Amiri</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">23 min ago</time>
+                    </p>
+                    <p class="text-truncate">
+                        Authoritatively exploit resource maximizing technologies before
+                        technically.
+                    </p>
                 </div>
-            </div>
+            </a>
+            <a class="media media-new1" href="page-app/mailbox-single.html">
+				<span class="avatar status-warning">
+				<img src="/assets/static/img/avatar/2.jpg" alt="...">
+				</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Hossein Shams</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">48 min ago</time>
+                    </p>
+                    <p class="text-truncate">
+                        Continually plagiarize efficient interfaces after
+                        bricks-and-clicks niches.
+                    </p>
+                </div>
+            </a>
+            <a class="media" href="page-app/mailbox-single.html">
+				<span class="avatar status-dark">
+				<img src="/assets/static/img/avatar/3.jpg" alt="...">
+				</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Helen Bennett</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">3 hours ago</time>
+                    </p>
+                    <p class="text-truncate">
+                        Objectively underwhelm cross-unit web-readiness before sticky
+                        outsourcing.
+                    </p>
+                </div>
+            </a>
+            <a class="media" href="page-app/mailbox-single.html">
+                <span class="avatar status-success bg-purple">FT</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Fidel Tonn</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">21 hours ago</time>
+                    </p>
+                    <p class="text-truncate">
+                        Interactively innovate transparent relationships with holistic
+                        infrastructures.
+                    </p>
+                </div>
+            </a>
+            <a class="media" href="page-app/mailbox-single.html">
+				<span class="avatar status-danger">
+				<img src="/assets/static/img/avatar/4.jpg" alt="...">
+				</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Freddie Arends</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">Yesterday</time>
+                    </p>
+                    <p class="text-truncate">
+                        Collaboratively visualize corporate initiatives for web-enabled
+                        value.
+                    </p>
+                </div>
+            </a>
+            <a class="media" href="page-app/mailbox-single.html">
+				<span class="avatar status-success">
+				<img src="/assets/static/img/avatar/5.jpg" alt="...">
+				</span>
+                <div class="media-body">
+                    <p>
+                        <strong>Freddie Arends</strong>
+                        <time class="float-right" datetime="2018-07-14 20:00">Yesterday</time>
+                    </p>
+                    <p class="text-truncate">
+                        Interactively reinvent standards compliant supply chains
+                        through next-generation bandwidth.
+                    </p>
+                </div>
+            </a>
         </div>
-        <div class="dropdown-menu-footer" role="presentation">
-            <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                <i class="icon md-settings" aria-hidden="true"></i>
-            </a>
-            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                See all messages
-            </a>
+        <div class="dropdown-footer">
+            <div class="left">
+                <a href="#">Read all messages</a>
+            </div>
+            <div class="right">
+                <a href="#" data-provide="tooltip" title="Mark all as read"><i
+                            class="fa fa-circle-o"></i></a>
+                <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
+            </div>
         </div>
     </div>
 </li>
+<!-- END Messages -->

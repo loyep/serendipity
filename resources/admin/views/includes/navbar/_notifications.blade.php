@@ -1,98 +1,56 @@
-<li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
-       aria-expanded="false" data-animation="scale-up" role="button">
-        <i class="icon md-notifications" aria-hidden="true"></i>
-        <span class="badge badge-pill badge-danger up">5</span>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-        <div class="dropdown-menu-header">
-            <h5>NOTIFICATIONS</h5>
-            <span class="badge badge-round badge-danger">New 5</span>
-        </div>
-
-        <div class="list-group">
-            <div data-role="container">
-                <div data-role="content">
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                                <i class="icon md-receipt bg-red-600 white icon-circle"
-                                   aria-hidden="true"></i>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">A new order has been placed</h6>
-                                <time class="media-meta" datetime="2017-06-12T20:50:48+08:00">5 hours
-                                    ago
-                                </time>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                                <i class="icon md-account bg-green-600 white icon-circle"
-                                   aria-hidden="true"></i>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Completed the task</h6>
-                                <time class="media-meta" datetime="2017-06-11T18:29:20+08:00">2 days
-                                    ago
-                                </time>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                                <i class="icon md-settings bg-red-600 white icon-circle"
-                                   aria-hidden="true"></i>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Settings updated</h6>
-                                <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days
-                                    ago
-                                </time>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                                <i class="icon md-calendar bg-blue-600 white icon-circle"
-                                   aria-hidden="true"></i>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Event started</h6>
-                                <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days
-                                    ago
-                                </time>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                            <div class="pr-10">
-                                <i class="icon md-comment bg-orange-600 white icon-circle"
-                                   aria-hidden="true"></i>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="media-heading">Message received</h6>
-                                <time class="media-meta" datetime="2017-06-10T12:34:48+08:00">3 days
-                                    ago
-                                </time>
-                            </div>
-                        </div>
-                    </a>
+<!-- Notifications -->
+<li class="dropdown d-none d-md-block">
+    <span class="topbar-btn has-new" data-toggle="dropdown"><i class="ti-bell"></i></span>
+    <div class="dropdown-menu dropdown-menu-right">
+        <div class="media-list media-list-hover media-list-divided media-list-xs">
+            <a class="media media-new" href="#">
+                <span class="avatar bg-success"><i class="ti-user"></i></span>
+                <div class="media-body">
+                    <p>
+                        New user registered
+                    </p>
+                    <time datetime="2018-07-14 20:00">Just now</time>
                 </div>
-            </div>
+            </a>
+            <a class="media" href="#">
+                <span class="avatar bg-info"><i class="ti-shopping-cart"></i></span>
+                <div class="media-body">
+                    <p>
+                        New order received
+                    </p>
+                    <time datetime="2018-07-14 20:00">2 min ago</time>
+                </div>
+            </a>
+            <a class="media" href="#">
+                <span class="avatar bg-warning"><i class="ti-face-sad"></i></span>
+                <div class="media-body">
+                    <p>
+                        Refund request from <b>Ashlyn Culotta</b>
+                    </p>
+                    <time datetime="2018-07-14 20:00">24 min ago</time>
+                </div>
+            </a>
+            <a class="media" href="#">
+                <span class="avatar bg-primary"><i class="ti-money"></i></span>
+                <div class="media-body">
+                    <p>
+                        New payment has made through PayPal
+                    </p>
+                    <time datetime="2018-07-14 20:00">53 min ago</time>
+                </div>
+            </a>
         </div>
-        <div class="dropdown-menu-footer">
-            <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                <i class="icon md-settings" aria-hidden="true"></i>
-            </a>
-            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                All notifications
-            </a>
+        <div class="dropdown-footer">
+            <div class="left">
+                <a href="#">Read all notifications</a>
+            </div>
+            <div class="right">
+                <a href="#" data-provide="tooltip" title="Mark all as read"><i
+                            class="fa fa-circle-o"></i></a>
+                <a href="#" data-provide="tooltip" title="Update"><i class="fa fa-repeat"></i></a>
+                <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
+            </div>
         </div>
     </div>
 </li>
+<!-- END Notifications -->
