@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Traits\HasPermission;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,6 +19,7 @@ class User extends Authenticatable implements Transformable
 {
     use TransformableTrait;
     use Notifiable;
+    use HasPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -78,16 +80,6 @@ class User extends Authenticatable implements Transformable
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles');
-    }
-
-    public function menus()
-    {
-        $menuGroup = $this->roles()->first()->name;
-        $menus = Menu::with(['parent', 'group'])->where([
-            ['parent_id', '=', 0],
-        ])->withCount('children')->with('children')->orderBy('order')->get();
-        dd($menus);
-        return $menus;
     }
 
 }

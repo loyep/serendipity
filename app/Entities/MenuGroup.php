@@ -42,6 +42,9 @@ class MenuGroup extends Model implements Transformable
             ])
             ->first();
 
+        if ( is_null($group)) {
+            $group = new MenuGroup();
+        }
         return $group;
     }
 }

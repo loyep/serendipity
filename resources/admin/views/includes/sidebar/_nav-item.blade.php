@@ -10,16 +10,19 @@
             array_push($listItemClass, 'active');
         }
 
+        $user = Auth::user();
         if (!$menu->children->isEmpty()) {
             foreach ($menu->children as $child)
             {
-                $hasChildren = $hasChildren || 1;
+                $hasChildren = $hasChildren || $user->can('browse', $child);
                 if (url($child->permalink()) == url()->current()) {
                     array_push($listItemClass, 'active open');
                 }
             }
         } else {
-
+            if ( !$user->can('browse', $menu)) {
+                continue;
+            }
         }
 
         if ($hasChildren) {
