@@ -40,12 +40,14 @@
 @yield('script-plugins')
 
 <script>
-    (function (document, window, $) {
-        'use strict';
-
-        var Site = window.Site;
-        $(document).ready(function () {
-            Site.run();
-        });
-    })(document, window, jQuery);
+    // (function (document, window, $) {
+    //     'use strict';
+    //
+    //     var Site = window.Site;
+    //     $(document).ready(function () {
+    //         Site.run();
+    //     });
+    // })(document, window, jQuery);
 </script>
+
+@yield('scripts')

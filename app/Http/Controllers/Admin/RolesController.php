@@ -58,7 +58,7 @@ class RolesController extends Controller
             ]);
         }
 
-        return view('roles.index', compact('roles'));
+        return view('admin::roles.index', compact('roles'));
     }
 
     /**

@@ -6,7 +6,7 @@
 @endsection
 
 @section('script-plugins')
-    <script src="/assets/admin/vendor/nestable/jquery.nestable.min.js?v4.0.1"></script>
+    <script src="/assets/admin/vendor/nestable/jquery.nestable.min.js"></script>
     <script src="/assets/admin/js/Plugin/nestable.js"></script>
 
     <script>

@@ -2,21 +2,23 @@
 
     @php
         $href = $menu->permalink();
-        $listItemClass = ['site-menu-item'];
+        $listItemClass = ['menu-item'];
 
         $hasChildren = false;
 
         if (url($href) == url()->current()) {
             array_push($listItemClass, 'active');
+            if ($depth == 0) array_push($listItemClass, 'open');
         }
 
         $user = Auth::user();
-        if (!$menu->children->isEmpty()) {
+        if ($depth == 0 && !$menu->children->isEmpty()) {
             foreach ($menu->children as $child)
             {
                 $hasChildren = $hasChildren || $user->can('browse', $child);
                 if (url($child->permalink()) == url()->current()) {
-                    array_push($listItemClass, 'active open');
+                    array_push($listItemClass, 'active');
+                   if ($depth == 0) array_push($listItemClass, 'open');
                 }
             }
         } else {
@@ -24,23 +26,19 @@
                 continue;
             }
         }
-
-        if ($hasChildren) {
-            array_push($listItemClass, 'has-sub');
-        }
     @endphp
 
     <li class="{{ implode(" ", $listItemClass) }}">
-        <a href="{{ $href }}">
-            <i class="site-menu-icon {{ $menu->icon }}" aria-hidden="true"></i>
-            <span class="site-menu-title">{{ $menu->title }}</span>
+        <a class="menu-link" href="{{ $href }}">
+            <span class="icon {{ $menu->icon ?: 'dot' }}"></span>
+            <span class="title">{{ $menu->title }}</span>
             @if($hasChildren)
-                <span class="site-menu-arrow"></span>
+                <span class="arrow"></span>
             @endif
         </a>
         @if($hasChildren)
-            <ul class="site-menu-sub">
-                @include('admin::includes.sidebar._nav-item', ['menus' => $menu->children])
+            <ul class="menu-submenu">
+                @include('admin::includes.sidebar._nav-item', ['menus' => $menu->children, 'depth' => ($depth + 1) ])
             </ul>
         @endif
     </li>
