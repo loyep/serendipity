@@ -2,7 +2,6 @@
 
 namespace App\Entities;
 
-use App\Events\MenuGroupDisplay;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -30,7 +29,7 @@ class MenuGroup extends Model implements Transformable
 
     public function parent_items()
     {
-        return $this->hasMany(Menu::class, 'group_id', 'id')->where('parent_id', '=', 0);
+        return $this->hasMany(Menu::class, 'group_id', 'id')->whereNull('parent_id');
     }
 
     public static function display($menuName, $type = null, array $options = [])
@@ -42,8 +41,6 @@ class MenuGroup extends Model implements Transformable
                 }
             ])
             ->first();
-
-//        event(new MenuGroupDisplay($group));
 
         return $group;
     }
