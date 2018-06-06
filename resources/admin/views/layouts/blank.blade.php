@@ -31,7 +31,9 @@
     @include('admin::includes.sidebar._header')
 
     @include('admin::includes.sidebar._navigation')
-</aside><!-- END Sidebar --><!-- Topbar -->
+</aside>
+<!-- END Sidebar -->
+<!-- Topbar -->
 <header class="topbar">
     <div class="topbar-left">
         <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
@@ -99,6 +101,7 @@
 <!-- END Topbar -->
 <!-- Main container -->
 <main class="main-container">
+    @section('content')
     <div class="main-content">
         <div class="row">
             <div class="col-12 text-center">
@@ -209,6 +212,7 @@
         </div>
         <br>
     </div>
+    @show
     <!--/.main-content -->
     @include('admin::includes._footer')
 </main>

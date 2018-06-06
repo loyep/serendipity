@@ -231,6 +231,7 @@ class UsersController extends Controller
 
     public function profile(Request $request)
     {
-        dd($request->user());
+        $user = $request->user();
+        return view('admin::users.profile', compact('user'));
     }
 }

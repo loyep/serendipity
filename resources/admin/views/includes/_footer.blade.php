@@ -7,7 +7,7 @@
                 All rights reserved.
             </p>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-6 text-center text-md-right">
             <p>Made with love for a better web.</p>
         </div>
     </div>
