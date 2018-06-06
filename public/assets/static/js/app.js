@@ -184,7 +184,7 @@ jQuery.fn.scrollToEnd = function() {
   // Application colors
   //
   app.colors = {
-    primary:       "#33cabb",
+    primary:       "#007bff",
     secondary:     "#e4eaec",
     success:       "#46be8a",
     info:          "#48b0f7",
