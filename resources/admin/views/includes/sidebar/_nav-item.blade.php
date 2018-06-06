@@ -6,10 +6,6 @@
 
         $hasChildren = false;
 
-        if ($menu->children_count > 0) {
-            array_push($listItemClass, 'has-sub');
-        }
-
         if (url($href) == url()->current()) {
             array_push($listItemClass, 'active');
         }
@@ -24,6 +20,10 @@
             }
         } else {
 
+        }
+
+        if ($hasChildren) {
+            array_push($listItemClass, 'has-sub');
         }
     @endphp
 

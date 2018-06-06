@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Route;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -22,7 +23,18 @@ class Menu extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['id', 'parent_id', 'order', 'title', 'icon', 'target', 'route', 'url', 'parameters', 'group_id'];
+    protected $fillable = [
+        'id',
+        'parent_id',
+        'order',
+        'title',
+        'icon',
+        'target',
+        'route',
+        'url',
+        'parameters',
+        'group_id'
+    ];
 
     public static function menus()
     {
@@ -51,28 +63,86 @@ class Menu extends Model implements Transformable
      */
     public function children(): HasMany
     {
-        return $this->hasMany(Menu::class, 'parent_id');
+        return $this->hasMany(Menu::class, 'parent_id')->with('children');
     }
 
-    public function permalink()
+    public function permalink($absolute = false)
     {
-        if ( !empty($this->route) ) {
+        return $this->prepareLink($absolute, $this->route, $this->parameters, $this->url);
+    }
 
-            $parameters = json_decode($this->parameters, true);
+    protected function prepareLink($absolute, $route, $parameters, $url)
+    {
+        if ( is_null($parameters) ) {
+            $parameters = [];
+        }
 
-            if ( !is_array($parameters) ) {
-                $parameters = array();
+        if ( is_string($parameters) ) {
+            $parameters = json_decode($parameters, true);
+        } elseif ( is_array($parameters) ) {
+//            $parameters = $parameters;
+        } elseif ( is_object($parameters) ) {
+            $parameters = json_decode(json_encode($parameters), true);
+        }
+
+        if ( !is_null($route) ) {
+            if ( !Route::has($route) ) {
+                return 'javascript:void(0)';
             }
 
-            $route = route($this->route, $parameters);
-
-            return $route;
+            return route($route, $parameters, $absolute);
         }
 
-        if ( !empty($this->url) ) {
-            return url($this->url);
+        if ( $absolute ) {
+            return url($url);
         }
-        return 'javascript:void(0)';
+
+        return $url;
     }
 
+    public function setUrlAttribute($value)
+    {
+        if ( is_null($value) ) {
+            $value = '';
+        }
+        $this->attributes['url'] = $value;
+    }
+
+
+    public function getParametersAttribute()
+    {
+        return json_decode($this->attributes['parameters']);
+    }
+
+
+    public function setParametersAttribute($value)
+    {
+        if ( is_array($value) ) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['parameters'] = $value;
+    }
+
+    /**
+     * Return the Highest Order Menu Item.
+     *
+     * @param number $parent (Optional) Parent id. Default null
+     *
+     * @return number Order number
+     */
+    public function highestOrderMenuItem($parent = null)
+    {
+        $order = 1;
+
+        $item = $this->where('parent_id', '=', $parent)
+            ->orderBy('order', 'DESC')
+            ->first();
+
+        if ( !is_null($item) ) {
+            $order = intval($item->order) + 1;
+        }
+
+        return $order;
+    }
 }

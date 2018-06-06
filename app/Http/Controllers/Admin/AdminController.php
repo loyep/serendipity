@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\Menu;
+use App\Entities\MenuGroup;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -23,7 +25,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        request()->user()->menus();
+        $role_name = request()->user()->roles()->first()->name;
+        $menu = \App\Entities\MenuGroup::display($role_name);
+//        dd($menu->parent_items->sortBy('order'));
         return view('admin::index');
     }
 }
