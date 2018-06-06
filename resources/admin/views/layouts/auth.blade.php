@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Responsive admin dashboard and web application ui kit. ">
-    <meta name="keywords" content="lock, lockscreen">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
-    <title>Lockscreen Page 2 &mdash; TheAdmin</title>
+    <title>@yield('title') &mdash; {{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i" rel="stylesheet">
@@ -21,35 +21,10 @@
     <link rel="icon" href="/assets/static/img/favicon.png">
 </head>
 
-<body class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(../assets/img/bg/1.jpg);"
-      data-overlay="7">
+<body class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(/assets/static/img/bg/register.jpg);"
+      data-overlay="2">
 
-
-<div class="card card-round card-shadowed px-50 py-30 w-400px mb-0 text-center" style="max-width: 100%">
-    <div>
-        <img class="avatar avatar-xxl" src="/assets/static/img/avatar/2.jpg" alt="...">
-        <br><br>
-        <h5 class="lead">Hossein Shams</h5>
-        <small>Enter your password to retrieve your session</small>
-    </div>
-
-    <hr class="w-30px">
-
-    <form class="form-type-material">
-        <div class="form-group">
-            <input type="password" class="form-control" id="password">
-            <label for="password">Password</label>
-        </div>
-
-        <br>
-        <button class="btn btn-bold btn-block btn-primary" type="submit"><i class="fa fa-unlock-alt mr-2"></i> Unlock
-        </button>
-    </form>
-
-    <p class="text-center text-muted fs-13 mt-20">You're not Hossein Shams? <a class="text-primary fw-500" href="#">Sign
-            in</a></p>
-</div>
-
+@yield('content')
 
 <!-- Scripts -->
 <script src="/assets/static/js/core.min.js"></script>
